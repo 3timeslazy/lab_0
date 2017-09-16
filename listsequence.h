@@ -34,7 +34,7 @@ private:
 
     SeqNode *_hiddenIterFromNode(int index, SeqNode *startNode) const {
         auto iterNode = startNode;
-        for (int i = 0; i < index; i++) { iterNode = iterNode->_next; }
+        for (auto i = 0; i < index; i++) { iterNode = iterNode->_next; }
         return iterNode;
     }
 
@@ -54,12 +54,12 @@ public:
     bool getIsEmpty() const override { return _isEmpty; }
 
     type getFirst() const override {
-        if (_isEmpty) { throw std::out_of_range("out of range"); }
+        if (_isEmpty) { throw std::out_of_range("sequence is empty"); }
         return _head->_value;
     }
 
     type getLast() const override {
-        if (_isEmpty) { throw std::out_of_range("out of range"); }
+        if (_isEmpty) { throw std::out_of_range("sequence is empty"); }
         return _tail->_value;
     }
 
@@ -136,7 +136,7 @@ public:
         auto *nodePtr = _hiddenIterFromNode(startIndex, _head);
         ListSequence<type> newSeq;
 
-        for (int i = 0; i < (endIndex - startIndex + 1); i++) {
+        for (auto i = 0; i < (endIndex - startIndex + 1); i++) {
             newSeq.append(nodePtr->_value);
             nodePtr = nodePtr->_next;
         }
